@@ -45,6 +45,9 @@ class WooCheckoutForm {
             // Hook to add the agreement field to the checkout form
             add_action('woocommerce_review_order_before_submit', [$this, 'add_agreement_field']);
 
+            // Hook to enqueue agreement styles
+            add_action('wp_enqueue_scripts', [$this, 'enqueue_agreement_styles']);
+
             // Hook to save the agreement field's value in the order meta
             add_action('woocommerce_checkout_update_order_meta', [$this, 'save_agreement_field']);
 
@@ -62,22 +65,26 @@ class WooCheckoutForm {
      * @since 1.0.0
      * @version 1.0.0
      */
+    /**
+     * Enqueue agreement checkbox styles
+     *
+     * @since 1.4.2
+     */
+    public function enqueue_agreement_styles() {
+        if ( is_checkout() ) {
+            wp_register_style( 'pulseem-checkout-agreement', false );
+            wp_enqueue_style( 'pulseem-checkout-agreement' );
+            wp_add_inline_style( 'pulseem-checkout-agreement',
+                '.form-row.terms-agreement.rtl-agreement { direction: rtl; text-align: right; width: 100%; }' .
+                '.form-row.terms-agreement.ltr-agreement { direction: ltr; text-align: left; width: 100%; }'
+            );
+        }
+    }
+
     public function add_agreement_field() {
         $is_rtl = is_rtl();
         $rtl_class = $is_rtl ? 'rtl-agreement' : 'ltr-agreement';
         ?>
-        <style>
-            .form-row.terms-agreement.rtl-agreement {
-                direction: rtl;
-                text-align: right;
-                width: 100%;
-            }
-            .form-row.terms-agreement.ltr-agreement {
-                direction: ltr;
-                text-align: left;
-                width: 100%;
-            }
-        </style>
         <p class="form-row terms-agreement <?php echo esc_attr($rtl_class); ?>">
             <label for="pulseem_checkout_agreement" class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
                 <input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="pulseem_checkout_agreement" id="pulseem_checkout_agreement" />
