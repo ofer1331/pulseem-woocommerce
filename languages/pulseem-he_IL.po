@@ -1,0 +1,594 @@
+# Hebrew translations for Pulseem plugin.
+# Copyright (C) 2024 Pulseem
+# This file is distributed under the same license as the Pulseem package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Pulseem 1.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Pulseem <info@pulseem.co.il>\n"
+"Language-Team: Hebrew\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Logs Page - Header
+msgid "Pulseem Logs"
+msgstr "יומני פולסים"
+
+msgid "Back to Settings"
+msgstr "חזרה להגדרות"
+
+# Logs Page - Filters
+msgid "Filters"
+msgstr "מסננים"
+
+msgid "Level"
+msgstr "רמה"
+
+msgid "All Levels"
+msgstr "כל הרמות"
+
+msgid "Context"
+msgstr "הקשר"
+
+msgid "All Contexts"
+msgstr "כל ההקשרים"
+
+msgid "Email"
+msgstr "אימייל"
+
+msgid "Search by email..."
+msgstr "חיפוש לפי אימייל..."
+
+msgid "Search"
+msgstr "חיפוש"
+
+msgid "Search in message..."
+msgstr "חיפוש בהודעה..."
+
+msgid "Date From"
+msgstr "מתאריך"
+
+msgid "Date To"
+msgstr "עד תאריך"
+
+msgid "Filter"
+msgstr "סינון"
+
+msgid "Reset"
+msgstr "איפוס"
+
+# Logs Page - Actions
+msgid "Showing %1$d of %2$d logs"
+msgstr "מוצגים %1$d מתוך %2$d יומנים"
+
+msgid "7 days"
+msgstr "7 ימים"
+
+msgid "14 days"
+msgstr "14 ימים"
+
+msgid "30 days"
+msgstr "30 ימים"
+
+msgid "60 days"
+msgstr "60 ימים"
+
+msgid "90 days"
+msgstr "90 ימים"
+
+msgid "Are you sure you want to delete old logs?"
+msgstr "למחוק יומנים ישנים?"
+
+msgid "Delete Old Logs"
+msgstr "מחיקת יומנים ישנים"
+
+msgid "Are you sure you want to clear ALL logs? This action cannot be undone."
+msgstr "למחוק את כל היומנים? לא ניתן לבטל פעולה זו."
+
+msgid "Clear All Logs"
+msgstr "ניקוי כל היומנים"
+
+msgid "All logs have been cleared."
+msgstr "כל היומנים נמחקו."
+
+msgid "%1$d log entries older than %2$d days have been deleted."
+msgstr "%1$d רשומות יומן ישנות מ-%2$d ימים נמחקו."
+
+# Logs Page - Table Headers
+msgid "Time"
+msgstr "זמן"
+
+msgid "Message"
+msgstr "הודעה"
+
+msgid "Data"
+msgstr "נתונים"
+
+msgid "No logs found."
+msgstr "לא נמצאו יומנים."
+
+msgid "View Data"
+msgstr "צפייה בנתונים"
+
+# Logs Page - Pagination
+msgid "Previous"
+msgstr "הקודם"
+
+msgid "Next"
+msgstr "הבא"
+
+msgid "Page %1$d of %2$d"
+msgstr "עמוד %1$d מתוך %2$d"
+
+# Log Levels
+msgid "Debug"
+msgstr "דיבאג"
+
+msgid "Info"
+msgstr "מידע"
+
+msgid "Warning"
+msgstr "אזהרה"
+
+msgid "Error"
+msgstr "שגיאה"
+
+# Log Contexts
+msgid "API"
+msgstr "API"
+
+msgid "User Registration"
+msgstr "רישום משתמשים"
+
+msgid "Purchase"
+msgstr "רכישה"
+
+msgid "Abandoned Cart"
+msgstr "עגלה נטושה"
+
+msgid "Elementor"
+msgstr "אלמנטור"
+
+msgid "Contact Form 7"
+msgstr "טופס יצירת קשר 7"
+
+msgid "Product Sync"
+msgstr "סנכרון מוצרים"
+
+msgid "General"
+msgstr "כללי"
+
+# Logs Page - Stats Dashboard
+msgid "Total Logs"
+msgstr "סה\"כ יומנים"
+
+msgid "Errors (24h)"
+msgstr "שגיאות (24 שעות)"
+
+msgid "Warnings (24h)"
+msgstr "אזהרות (24 שעות)"
+
+msgid "DB Table Size"
+msgstr "גודל טבלת נתונים"
+
+# Logs Page - New Filters
+msgid "Request ID"
+msgstr "מזהה בקשה"
+
+msgid "Filter by request ID..."
+msgstr "סינון לפי מזהה בקשה..."
+
+# Logs Page - Per Page & Export
+msgid "Per page:"
+msgstr "לעמוד:"
+
+msgid "Export CSV"
+msgstr "ייצוא CSV"
+
+msgid "Export JSON"
+msgstr "ייצוא JSON"
+
+# Logs Page - Bulk Actions
+msgid "selected"
+msgstr "נבחרו"
+
+msgid "Delete Selected"
+msgstr "מחיקת הנבחרים"
+
+msgid "Delete selected logs?"
+msgstr "למחוק את היומנים שנבחרו?"
+
+msgid "%d log entries have been deleted."
+msgstr "%d רשומות יומן נמחקו."
+
+# Logs Page - Log Settings
+msgid "Log Settings"
+msgstr "הגדרות יומנים"
+
+msgid "Minimum Log Level"
+msgstr "רמת יומן מינימלית"
+
+msgid "Retention Period"
+msgstr "תקופת שמירה"
+
+msgid "Never"
+msgstr "לעולם לא"
+
+msgid "Save Settings"
+msgstr "שמירת הגדרות"
+
+msgid "Saved!"
+msgstr "נשמר!"
+
+# Logs Page - Table New Columns
+msgid "Details"
+msgstr "פרטים"
+
+msgid "View"
+msgstr "צפייה"
+
+# Logs Page - Modal
+msgid "Log Details"
+msgstr "פרטי יומן"
+
+msgid "ID"
+msgstr "מזהה"
+
+msgid "Timestamp"
+msgstr "חותמת זמן"
+
+msgid "User ID"
+msgstr "מזהה משתמש"
+
+msgid "IP Address"
+msgstr "כתובת IP"
+
+msgid "API Call"
+msgstr "קריאת API"
+
+msgid "HTTP Status:"
+msgstr "סטטוס HTTP:"
+
+msgid "Error:"
+msgstr "שגיאה:"
+
+msgid "Request Body (sent to Pulseem)"
+msgstr "גוף בקשה (נשלח לפולסים)"
+
+msgid "Response Body (from Pulseem)"
+msgstr "גוף תגובה (התקבל מפולסים)"
+
+# Log Contexts - New
+msgid "Activation"
+msgstr "הפעלה"
+
+msgid "Agreement"
+msgstr "הסכמה"
+
+msgid "Cron"
+msgstr "משימות מתוזמנות"
+
+# Settings Page
+msgid "View Logs"
+msgstr "צפייה ביומנים"
+
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid "Logs"
+msgstr "יומנים"
+
+# Existing translations from the plugin
+msgid "Pulseem"
+msgstr "פולסים"
+
+msgid "Pulseem Integration"
+msgstr "אינטגרציית פולסים"
+
+msgid "API Connection"
+msgstr "חיבור API"
+
+msgid "Customer Signup"
+msgstr "הרשמת לקוחות"
+
+msgid "Purchase Tracking"
+msgstr "מעקב רכישות"
+
+msgid "Cart Abandonment"
+msgstr "נטישת עגלה"
+
+msgid "Page Tracking"
+msgstr "מעקב עמודים"
+
+msgid "Video Tutorials"
+msgstr "מדריכי וידאו"
+
+msgid "Compatible Plugins Status"
+msgstr "סטטוס תוספים תואמים"
+
+msgid "Below you can see which compatible plugins are currently active on your site."
+msgstr "להלן ניתן לראות אילו תוספים תואמים פעילים כעת באתר."
+
+msgid "Active"
+msgstr "פעיל"
+
+msgid "Inactive"
+msgstr "לא פעיל"
+
+msgid "API Key"
+msgstr "מפתח API"
+
+msgid "Enter your Pulseem API key to enable integration features."
+msgstr "יש להזין את מפתח ה-API של פולסים כדי להפעיל את תכונות האינטגרציה."
+
+msgid "New Customer Signup Settings"
+msgstr "הגדרות הרשמת לקוחות חדשים"
+
+msgid "Enable Customer Signup Feature"
+msgstr "הפעלת תכונת הרשמת לקוחות"
+
+msgid "Allow new customers to be automatically inserted."
+msgstr "הכנסה אוטומטית של לקוחות חדשים."
+
+msgid "Insert customers who did not Opt-In  in \"Pending\" status"
+msgstr "הכנסת לקוחות שלא אישרו הרשמה בסטטוס \"ממתין\""
+
+msgid "Recipients in \"Pending\" will be receiving an Email asking them to Opt-In Until they Opt In, they will not receive any Emails or SMS messages."
+msgstr "נמענים בסטטוס \"ממתין\" יקבלו אימייל עם בקשה לאישור הרשמה. עד לאישור, לא יישלחו אליהם הודעות אימייל או SMS."
+
+msgid "Agreement Settings"
+msgstr "הגדרות הסכמה"
+
+msgid "Add a checkbox to your signup/checkout form to collect customer consent."
+msgstr "הוספת תיבת סימון לטופס ההרשמה/התשלום לצורך איסוף הסכמת לקוחות."
+
+msgid "Agreement Text"
+msgstr "טקסט הסכמה"
+
+msgid "Only customers who check the box will be inserted as \"Active\"."
+msgstr "רק לקוחות שיסמנו את התיבה יוכנסו כ\"פעילים\"."
+
+msgid "Group Assignment"
+msgstr "שיוך לקבוצה"
+
+msgid "Not selected"
+msgstr "לא נבחר"
+
+msgid "New Purchase Settings"
+msgstr "הגדרות רכישה חדשה"
+
+msgid "Enable Purchase Tracking"
+msgstr "הפעלת מעקב רכישות"
+
+msgid "Track customer purchases and sync with Pulseem"
+msgstr "מעקב אחר רכישות לקוחות וסנכרון עם פולסים"
+
+msgid "Checkout Agreement"
+msgstr "הסכמה בקופה"
+
+msgid "Cart Abandonment Settings"
+msgstr "הגדרות נטישת עגלה"
+
+msgid "Enable Cart Abandonment Tracking"
+msgstr "הפעלת מעקב נטישת עגלה"
+
+msgid "Track abandoned carts and follow up with customers via Pulseem."
+msgstr "מעקב אחר עגלות נטושות ויצירת קשר עם לקוחות דרך פולסים."
+
+msgid "Insert customers who did not Opt-In in \"Pending\" status"
+msgstr "הכנסת לקוחות שלא אישרו הרשמה בסטטוס \"ממתין\""
+
+msgid "Time Settings"
+msgstr "הגדרות זמן"
+
+msgid "Add customers to group after:"
+msgstr "הוספת לקוחות לקבוצה לאחר:"
+
+msgid "Minutes"
+msgstr "דקות"
+
+msgid "Hours"
+msgstr "שעות"
+
+msgid "Days"
+msgstr "ימים"
+
+msgid "This time setting applies to both regular abandoned carts and \"Pending Payment\" orders (when enabled above)."
+msgstr "הגדרת זמן זו חלה גם על עגלות נטושות רגילות וגם על הזמנות \"ממתינות לתשלום\" (כאשר האפשרות מופעלת למעלה)."
+
+msgid "Product Synchronization"
+msgstr "סנכרון מוצרים"
+
+msgid "Enable Product Synchronization"
+msgstr "הפעלת סנכרון מוצרים"
+
+msgid "View all synchronized products in the JSON file. Use the sync button to update existing products and add new ones from your store. Products already in the system will only be updated, not duplicated."
+msgstr "צפייה בכל המוצרים המסונכרנים בקובץ ה-JSON. ניתן להשתמש בכפתור הסנכרון כדי לעדכן מוצרים קיימים ולהוסיף חדשים מהחנות. מוצרים שכבר קיימים במערכת יעודכנו בלבד ולא ישוכפלו."
+
+msgid "View Products List"
+msgstr "צפייה ברשימת מוצרים"
+
+msgid "Sync Store Products"
+msgstr "סנכרון מוצרי חנות"
+
+msgid "Page Tracking Settings"
+msgstr "הגדרות מעקב עמודים"
+
+msgid "Enable General Page Tracking"
+msgstr "הפעלת מעקב עמודים כללי"
+
+msgid "Track customer activities on general website pages."
+msgstr "מעקב אחר פעילות לקוחות בעמודים כלליים באתר."
+
+msgid "Enable WooCommerce Page Tracking"
+msgstr "הפעלת מעקב עמודי WooCommerce"
+
+msgid "Track customer activities specifically on WooCommerce pages like product, cart, and checkout pages."
+msgstr "מעקב אחר פעילות לקוחות בעמודי WooCommerce כגון עמודי מוצר, עגלה וקופה."
+
+msgid "Enable these options to monitor which pages customers are visiting. This helps in analyzing customer behavior and improving engagement."
+msgstr "יש להפעיל אפשרויות אלה כדי לעקוב אחר העמודים שבהם לקוחות מבקרים. מידע זה מסייע בניתוח התנהגות לקוחות ושיפור מעורבות."
+
+msgid "Video Tutorial"
+msgstr "מדריך וידאו"
+
+msgid "Learn how to install and set up Pulseem integration with this comprehensive video guide."
+msgstr "מדריך וידאו מקיף להתקנה והגדרה של אינטגרציית פולסים."
+
+msgid "Plugin Installation Guide"
+msgstr "מדריך התקנת התוסף"
+
+msgid "Complete step-by-step guide for installing and setting up the Pulseem WooCommerce integration plugin."
+msgstr "מדריך מלא צעד אחר צעד להתקנה והגדרה של תוסף אינטגרציית פולסים ל-WooCommerce."
+
+msgid "Setup Guide"
+msgstr "מדריך הגדרה"
+
+msgid "Duration: 3:45"
+msgstr "משך: 3:45"
+
+msgid "Update Settings"
+msgstr "עדכון הגדרות"
+
+msgid "Settings have been successfully updated."
+msgstr "ההגדרות עודכנו בהצלחה."
+
+msgid "Products synchronized successfully!"
+msgstr "המוצרים סונכרנו בהצלחה!"
+
+msgid "Error occurred during synchronization."
+msgstr "אירעה שגיאה במהלך הסנכרון."
+
+msgid "Synchronization in Progress"
+msgstr "סנכרון בתהליך"
+
+msgid "Updating existing products and adding new ones..."
+msgstr "מתבצע עדכון מוצרים קיימים והוספת חדשים..."
+
+# Elementor Integration
+msgid "Select Group"
+msgstr "בחירת קבוצה"
+
+msgid "Email Field ID"
+msgstr "מזהה שדה אימייל"
+
+msgid "First Name Field ID"
+msgstr "מזהה שדה שם פרטי"
+
+msgid "Last Name Field ID"
+msgstr "מזהה שדה שם משפחה"
+
+msgid "Phone Field ID"
+msgstr "מזהה שדה טלפון"
+
+msgid "Acceptance Field ID"
+msgstr "מזהה שדה הסכמה"
+
+msgid "No group selected for registration."
+msgstr "לא נבחרה קבוצה לרישום."
+
+msgid "Required fields are missing."
+msgstr "שדות חובה חסרים."
+
+msgid "User successfully added to Pulseem."
+msgstr "המשתמש נוסף בהצלחה לפולסים."
+
+msgid "Failed to add user to Pulseem."
+msgstr "הוספת המשתמש לפולסים נכשלה."
+
+# Contact Form 7 Integration
+msgid "Pulseem Integration Settings"
+msgstr "הגדרות אינטגרציית פולסים"
+
+# Settings Page - API Errors
+msgid "HTTP Error: %s"
+msgstr "שגיאת HTTP: %s"
+
+msgid "Invalid API key! Please check your credentials and try again."
+msgstr "מפתח API לא תקין! אנא בדוק את הפרטים ונסה שוב."
+
+msgid "Unexpected HTTP Code: %s"
+msgstr "קוד HTTP לא צפוי: %s"
+
+msgid "Failed to fetch groups. The API response might be invalid."
+msgstr "שליפת הקבוצות נכשלה. תגובת ה-API עשויה להיות לא תקינה."
+
+msgid "No groups found for the provided API key. Please verify your account settings."
+msgstr "לא נמצאו קבוצות עבור מפתח ה-API שהוזן. אנא ודא את הגדרות החשבון."
+
+msgid "API key is missing. Please enter your API key in the settings."
+msgstr "מפתח API חסר. אנא הזן את מפתח ה-API בהגדרות."
+
+# API Connection Section
+msgid "Required"
+msgstr "חובה"
+
+msgid "Enter your API key here"
+msgstr "יש להזין כאן את מפתח ה-API"
+
+msgid "Elementor page builder for advanced form creation and integration"
+msgstr "בונה עמודים אלמנטור ליצירת טפסים מתקדמים ואינטגרציה"
+
+msgid "Contact Form 7 for lead capture and data collection"
+msgstr "טופס יצירת קשר 7 ללכידת לידים ואיסוף נתונים"
+
+msgid "Bricks Builder for signup & checkout forms (soon also for regular forms)."
+msgstr "Bricks Builder לטפסי הרשמה וקופה (בקרוב גם לטפסים רגילים)."
+
+msgid "Bricks Builder"
+msgstr "Bricks Builder"
+
+msgid "Configure Pulseem integration for this form."
+msgstr "הגדרת אינטגרציית פולסים עבור טופס זה."
+
+msgid "Enable Pulseem Integration"
+msgstr "הפעלת אינטגרציית פולסים"
+
+msgid "Select Group:"
+msgstr "בחירת קבוצה:"
+
+msgid "Email Field ID:"
+msgstr "מזהה שדה אימייל:"
+
+msgid "First Name Field ID:"
+msgstr "מזהה שדה שם פרטי:"
+
+msgid "Last Name Field ID:"
+msgstr "מזהה שדה שם משפחה:"
+
+msgid "Phone Field ID:"
+msgstr "מזהה שדה טלפון:"
+
+msgid "email"
+msgstr "אימייל"
+
+msgid "first_name"
+msgstr "שם_פרטי"
+
+msgid "last_name"
+msgstr "שם_משפחה"
+
+msgid "phone"
+msgstr "טלפון"
+
+msgid "acceptance"
+msgstr "הסכמה"
+
+# Additional Settings Strings
+msgid "Include \"Pending Payment\" orders as abandoned carts"
+msgstr "הכללת הזמנות \"ממתינות לתשלום\" כעגלות נטושות"
+
+msgid "Consider orders with \"Pending Payment\" status as abandoned carts for follow-up."
+msgstr "התייחסות להזמנות בסטטוס \"ממתינות לתשלום\" כעגלות נטושות לצורך מעקב."
+
+msgid "Only customers who check the box will be inserted as \"Active\". This text field and checkbox are shared between New Purchase and Cart Abandonment settings.  Any changes made to the text or checkbox here will automatically apply to both features."
+msgstr "רק לקוחות שיסמנו את התיבה יוכנסו כ\"פעילים\". שדה הטקסט ותיבת הסימון משותפים בין הגדרות רכישה חדשה ונטישת עגלה. כל שינוי בטקסט או בתיבת הסימון כאן יחול אוטומטית על שתי התכונות."
+
+msgid "Recipients in \"Pending\" will be receiving an Email asking them to Opt-In Until they Opt In, they will not receive any Emails or SMS messages.   Note: When \"Include Pending Payment orders\" is enabled, orders that remain in \"Pending Payment\" status will be treated as abandoned carts after the specified time period."
+msgstr "נמענים בסטטוס \"ממתין\" יקבלו אימייל עם בקשה לאישור הרשמה. עד לאישור, לא יישלחו אליהם הודעות אימייל או SMS. הערה: כאשר האפשרות \"הכללת הזמנות ממתינות לתשלום\" מופעלת, הזמנות שנשארות בסטטוס \"ממתינות לתשלום\" יטופלו כעגלות נטושות לאחר פרק הזמן שנקבע."

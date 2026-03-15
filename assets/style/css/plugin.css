@@ -1,0 +1,136 @@
+/* WordPress admin overrides */
+.card input[type="checkbox"]:checked::before { display: none; }
+.card input[type="checkbox"],
+.card input[type="radio"] {
+    margin-top: 8px;
+}
+.rtl .card input[type="radio"] {
+    margin-top: 0px;
+}
+.rtl input[type=checkbox],
+.rtl input[type=radio] {
+    margin: 0;
+}
+
+/* Select2 */
+.select2-container { width: 100% !important; }
+
+li.select2-selection__choice {
+    padding: 5px 25px !important;
+    background-color: #DB2777 !important;
+    color: #fff !important;
+    border: 0 !important;
+    margin-top: 10px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: white !important;
+}
+
+span.select2-selection__choice__remove {
+    border: 0 !important;
+}
+
+span.select2-selection__choice__remove:hover {
+    color: black !important;
+}
+
+/* Toggle switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #EC4899;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider:hover {
+    box-shadow: 0 0 1px #EC4899;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #EC4899;
+}
+
+/* Toggle switch RTL fix */
+[dir="rtl"] .slider:before {
+    left: auto;
+    right: 4px;
+}
+
+[dir="rtl"] input:checked + .slider:before {
+    transform: translateX(-26px);
+}
+
+/* Header toggle - attention pulse animation */
+.header-toggle {
+    position: relative;
+}
+
+.header-toggle::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 34px;
+    border: 2px solid #EC4899;
+    animation: toggle-pulse 1.5s ease-in-out 3;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes toggle-pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* Sync spinner */
+.sync-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #EC4899;
+}

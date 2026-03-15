@@ -1,0 +1,201 @@
+/* Hide x-cloak elements until Alpine.js initializes */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Modal overlay */
+.pulseem-modal-overlay {
+    animation: pulseem-fade-in 0.15s ease-out;
+}
+
+.pulseem-modal-backdrop {
+    animation: pulseem-fade-in 0.15s ease-out;
+}
+
+.pulseem-modal-content {
+    animation: pulseem-slide-up 0.2s ease-out;
+}
+
+@keyframes pulseem-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulseem-slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sort link styling */
+.pulseem-sort-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.pulseem-sort-link:hover {
+    color: #db2777;
+}
+
+/* Checkbox styling */
+input[type="checkbox"].rounded {
+    border-radius: 0.25rem;
+}
+
+/* Stats cards */
+.pulseem-stats-card {
+    transition: box-shadow 0.2s;
+}
+
+.pulseem-stats-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Full width table */
+.pulseemplugin-wrapper .overflow-x-auto {
+    max-width: 100%;
+}
+
+/* Ensure modal is above WP admin bar */
+.pulseem-modal-overlay {
+    z-index: 100050 !important;
+}
+
+/* RTL Support for Logs Page */
+.pulseem-rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Only reverse horizontal flex layouts, not vertical ones */
+.pulseem-rtl .flex:not(.flex-col):not(.flex-column) {
+    flex-direction: row-reverse;
+}
+
+/* Keep flex-col as column */
+.pulseem-rtl .flex.flex-col,
+.pulseem-rtl .flex-col {
+    flex-direction: column !important;
+}
+
+/* Margin swaps */
+.pulseem-rtl .ml-2 {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+.pulseem-rtl .ml-3 {
+    margin-left: 0;
+    margin-right: 0.75rem;
+}
+
+.pulseem-rtl .mr-1 {
+    margin-right: 0;
+    margin-left: 0.25rem;
+}
+
+.pulseem-rtl .mr-2 {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+.pulseem-rtl .mr-4 {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+/* Text alignment */
+.pulseem-rtl .text-left {
+    text-align: right;
+}
+
+.pulseem-rtl th {
+    text-align: right;
+}
+
+.pulseem-rtl td {
+    text-align: right;
+}
+
+/* Form inputs */
+.pulseem-rtl input[type="text"],
+.pulseem-rtl input[type="email"],
+.pulseem-rtl input[type="date"],
+.pulseem-rtl select {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Border radius swaps */
+.pulseem-rtl .rounded-l-md {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.pulseem-rtl .rounded-r-md {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+}
+
+/* Space utilities */
+.pulseem-rtl .space-x-px > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+}
+
+.pulseem-rtl .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+/* Pre tags for JSON data - keep LTR */
+.pulseem-rtl pre {
+    direction: ltr;
+    text-align: left;
+}
+
+/* Grid layouts */
+.pulseem-rtl .grid {
+    direction: rtl;
+}
+
+/* Table */
+.pulseem-rtl table {
+    direction: rtl;
+}
+
+/* Pagination */
+.pulseem-rtl nav[aria-label="Pagination"] {
+    direction: rtl;
+}
+
+.pulseem-rtl .-space-x-px > :not([hidden]) ~ :not([hidden]) {
+    margin-right: -1px;
+    margin-left: 0;
+}
+
+/* Gap utilities */
+.pulseem-rtl .gap-2,
+.pulseem-rtl .gap-4 {
+    direction: rtl;
+}
+
+/* Flex wrap */
+.pulseem-rtl .flex-wrap {
+    direction: rtl;
+}
+
+/* RTL Modal */
+.pulseem-rtl .pulseem-modal-content {
+    direction: rtl;
+    text-align: right;
+}
+
+.pulseem-rtl .pulseem-modal-content pre {
+    direction: ltr;
+    text-align: left;
+}
