@@ -37,7 +37,8 @@ class WpRegistrationForm {
 
 
 	public function add_agreement_field(){
-		$registration_agreement = isset($_POST['pulseem_user_registration_agreement'])?1:0;
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WordPress verifies the nonce before rendering the registration form.
+		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 	?>
 		<p>
 			<label for="user_registration_agreement_id">
@@ -58,7 +59,8 @@ class WpRegistrationForm {
 
 
 	public function save_agreement_field($user_id){
-		$registration_agreement = isset($_POST['pulseem_user_registration_agreement'])?1:0;
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WordPress verifies the nonce before triggering the user_register hook.
+		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 		do_action('pulseem-wp-registration-form-save', $registration_agreement);
 		UserModel::update_user_pulseem_registration_agreement($user_id, $registration_agreement);
 	}

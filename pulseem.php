@@ -13,11 +13,10 @@
  * Serves as the main entry point and orchestrator for the plugin.
  *
  * Plugin Name: Pulseem
- * Plugin URI: https://www.pulseem.co.il/
  * Description: WooCommerce integration with Pulseem API.
  * Version: 1.4.2
  * Author: Pulseem
- * Author URI: https://www.pulseem.co.il/
+ * Author URI: https://site.pulseem.co.il/
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: pulseem
@@ -48,6 +47,7 @@ use pulseem\WpRegistrationForm;
 // ===== LOAD TEXTDOMAIN =====
 add_action('init', 'pulseem_load_textdomain');
 function pulseem_load_textdomain() {
+    // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Kept for backward compatibility with WordPress < 4.6 and custom translation files.
     load_plugin_textdomain(
         'pulseem',
         false,
@@ -63,6 +63,7 @@ require_once __DIR__ . '/includes/class-pulseem-logger.php';
 
 // ===== PLUGIN CONSTANTS =====
 // Define constants only if WooCommerce is active
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- 'active_plugins' is a core WordPress filter, not a custom hook.
 if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
     define('PULSEEM_DIR', __DIR__);
     define('PULSEEM_URI', plugin_dir_url(__FILE__));
@@ -102,6 +103,7 @@ function pulseem_register_activation_hook() {
  * Initialize plugin if WooCommerce is active
  * Load dependencies and instantiate required classes
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- 'active_plugins' is a core WordPress filter, not a custom hook.
 if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
     // Load dependencies
     require_once __DIR__ . '/includes/class-user-model.php';
@@ -184,6 +186,7 @@ add_action('elementor_pro/forms/actions/register', function($actions_manager) {
  */
 add_action('wp_enqueue_scripts', 'pulseem_head_script');
 function pulseem_head_script() {
+    // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- External tracking script; version controlled by the remote service.
     wp_enqueue_script(
         'pulseem-tracking-main',
         'https://webscript.prd.services.pulseem.com/main.js',
@@ -201,21 +204,40 @@ function pulseem_head_script() {
  */
 add_action('admin_enqueue_scripts', 'pulseem_enqueue_admin_assets');
 function pulseem_enqueue_admin_assets($hook) {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading $_GET['page'] for conditional admin asset loading, no data processing.
     $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
     if ($current_page === 'pulseem_settings' || $current_page === 'pulseem_logs') {
        // Enqueue Tailwind CSS (local)
+       // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter -- Tailwind CSS-in-JS must load in <head> to style the admin page before render.
        wp_enqueue_script(
         'pulseem-tailwind',
         PULSEEM_ASSETS_URI . 'js/tailwindcss.min.js',
         [],
-        '1.0.0'
+        '1.0.0',
+        false
         );
         
-        // Enqueue Alpine.js (local)
+        // Enqueue logs JS before Alpine on logs page so pulseemLogs() is defined first
+        if ($current_page === 'pulseem_logs') {
+            wp_enqueue_script(
+                'pulseem-logs-js',
+                PULSEEM_ASSETS_URI . 'js/pulseem-logs.js',
+                [],
+                '1.4.2',
+                false
+            );
+            wp_localize_script('pulseem-logs-js', 'pulseem_logs', [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce'    => wp_create_nonce('pulseem_logs_nonce'),
+            ]);
+        }
+
+        // Enqueue Alpine.js (local) - must load after pulseem-logs-js
+        $alpine_deps = ($current_page === 'pulseem_logs') ? ['pulseem-logs-js'] : [];
         wp_enqueue_script(
             'pulseem-alpine-js',
             PULSEEM_ASSETS_URI . 'js/alpinejs.min.js',
-            [],
+            $alpine_deps,
             '1.0.0',
             false
         );
@@ -373,8 +395,8 @@ function pulseem_add_privacy_policy_content() {
         '<p>' . sprintf(
             /* translators: %1$s: link to terms of use, %2$s: link to privacy policy */
             esc_html__( 'For more information, see Pulseem\'s %1$s and %2$s.', 'pulseem' ),
-            '<a href="https://www.pulseem.co.il/terms" target="_blank">' . esc_html__( 'Terms of Use', 'pulseem' ) . '</a>',
-            '<a href="https://www.pulseem.co.il/privacy" target="_blank">' . esc_html__( 'Privacy Policy', 'pulseem' ) . '</a>'
+            '<a href="https://site.pulseem.co.il/terms-of-engagement/" target="_blank">' . esc_html__( 'Terms of Use', 'pulseem' ) . '</a>',
+            '<a href="https://site.pulseem.co.il/privacy-policy/" target="_blank">' . esc_html__( 'Privacy Policy', 'pulseem' ) . '</a>'
         ) . '</p>';
 
     wp_add_privacy_policy_content( 'Pulseem', $content );

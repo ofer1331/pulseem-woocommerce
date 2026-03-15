@@ -45,7 +45,6 @@ class WooPulseemActions {
     public function __construct() {
         $this->pulseem_admin_model = new WooPulseemAdminModel();
         add_action('user_register', [$this, 'userRegister']);
-        //add_action('woocommerce_thankyou', [$this, 'wooCheckoutOrderProcessed'], 40);
         add_action('woocommerce_order_status_changed', [$this, 'handleOrderStatusChange'], 10, 4);
     }
 

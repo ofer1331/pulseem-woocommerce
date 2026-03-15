@@ -51,6 +51,7 @@ $options = get_option('pulseem_settings', []);
 
             <?php
             // Notification Messages
+            // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Reading $_GET['settings-updated'] for success notice display, no data processing.
             if (
                 isset($_GET['settings-updated']) &&
                 filter_var(sanitize_text_field(wp_unslash($_GET['settings-updated'])), FILTER_VALIDATE_BOOLEAN)
@@ -67,7 +68,7 @@ $options = get_option('pulseem_settings', []);
                         </div>
                     </div>
                 </div>
-            <?php endif; ?>
+            <?php endif; // phpcs:enable WordPress.Security.NonceVerification.Recommended ?>
 
             <?php $errors = get_settings_errors('pulseem_settings'); ?>
             <?php if (!empty($errors)) : ?>

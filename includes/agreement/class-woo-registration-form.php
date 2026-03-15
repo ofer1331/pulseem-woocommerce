@@ -45,8 +45,9 @@ class WooRegistrationForm {
 		if (!$this->pulseem_admin_model->getIsUserRegister()) {
 			return; // לא להציג את השדה אם לא פעיל
 		}
-	
-		$registration_agreement = isset($_POST['pulseem_user_registration_agreement']) ? 1 : 0;
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the nonce before rendering this registration form.
+		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 		?>
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 			<label for="user_registration_agreement_id">
@@ -68,7 +69,8 @@ class WooRegistrationForm {
 	}
 
 	public function save_agreement_field($user_id){
-		$registration_agreement = isset($_POST['pulseem_user_registration_agreement']) ? 1 : 0;
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the nonce before triggering woocommerce_created_customer.
+		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 		do_action('pulseem-wp-registration-form-save', $registration_agreement);
 		UserModel::update_user_pulseem_registration_agreement($user_id, $registration_agreement);
 	}

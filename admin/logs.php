@@ -91,11 +91,13 @@ function pulseem_sort_link($column, $current_orderby, $current_order) {
     $new_order = ($current_orderby === $column && $current_order === 'ASC') ? 'DESC' : 'ASC';
     $allowed_keys = ['page', 'level', 'context', 'email', 'search', 'date_from', 'date_to', 'request_id', 'paged', 'per_page', 'order', 'orderby'];
     $params = [];
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Reading $_GET params to build sort/filter URLs for the logs table, no data processing.
     foreach ($allowed_keys as $key) {
         if (isset($_GET[$key])) {
             $params[$key] = sanitize_text_field(wp_unslash($_GET[$key]));
         }
     }
+    // phpcs:enable WordPress.Security.NonceVerification.Recommended
     $params['orderby'] = $column;
     $params['order'] = $new_order;
     return add_query_arg($params, admin_url('admin.php'));
@@ -118,59 +120,6 @@ $export_base_params = array_filter([
 $export_nonce = wp_create_nonce('pulseem_logs_nonce');
 
 ?>
-
-<script>
-/**
- * Alpine.js data component for Pulseem Logs page.
- * Must be defined inline BEFORE Alpine.js processes x-data attributes.
- */
-function pulseemLogs() {
-    return {
-        selectedIds: [],
-        modalOpen: false,
-        modalData: null,
-        settingsSaved: false,
-        toggleAll: function(event) {
-            var checkboxes = document.querySelectorAll('input[name="log_ids[]"]');
-            var checked = event.target.checked;
-            this.selectedIds = [];
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = checked;
-                if (checked) this.selectedIds.push(parseInt(checkboxes[i].value));
-            }
-        },
-        toggleId: function(id, event) {
-            if (event.target.checked) {
-                this.selectedIds.push(id);
-            } else {
-                this.selectedIds = this.selectedIds.filter(function(item) { return item !== id; });
-            }
-        },
-        openModal: function(data) {
-            this.modalData = data;
-            this.modalOpen = true;
-        },
-        saveLogSettings: function() {
-            var self = this;
-            var level = document.getElementById('setting_log_level').value;
-            var retention = document.getElementById('setting_retention').value;
-            var formData = new FormData();
-            formData.append('action', 'pulseem_save_log_settings');
-            formData.append('nonce', pulseem_logs.nonce);
-            formData.append('log_level', level);
-            formData.append('log_retention_days', retention);
-            fetch(pulseem_logs.ajax_url, { method: 'POST', body: formData, credentials: 'same-origin' })
-            .then(function(r) { return r.json(); })
-            .then(function(result) {
-                if (result.success) {
-                    self.settingsSaved = true;
-                    setTimeout(function() { self.settingsSaved = false; }, 3000);
-                }
-            });
-        }
-    };
-}
-</script>
 
 <div class="wrap pulseemplugin-wrapper bg-gray-50 min-h-screen <?php echo esc_attr( is_rtl() ? 'pulseem-rtl' : '' ); ?>" dir="<?php echo esc_attr( is_rtl() ? 'rtl' : 'ltr' ); ?>"
      x-data="pulseemLogs()">
@@ -510,7 +459,7 @@ function pulseemLogs() {
                                             <?php endif; ?>
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-500">
-                                            <button type="button" @click="openModal(JSON.parse(decodeURIComponent('<?php echo rawurlencode(wp_json_encode($modal_data)); ?>')))" class="text-pink-600 hover:text-pink-800 text-xs">
+                                            <button type="button" @click="openModal(JSON.parse(decodeURIComponent('<?php echo esc_attr(rawurlencode(wp_json_encode($modal_data))); ?>')))" class="text-pink-600 hover:text-pink-800 text-xs">
                                                 <?php esc_html_e('View', 'pulseem'); ?>
                                             </button>
                                         </td>
@@ -540,8 +489,8 @@ function pulseemLogs() {
                             <div>
                                 <p class="text-sm text-gray-700">
                                     <?php
-                                    /* translators: %1$d: current page number, %2$d: total pages */
                                     printf(
+                                        /* translators: %1$d: current page number, %2$d: total pages */
                                         esc_html__('Page %1$d of %2$d', 'pulseem'),
                                         intval($current_page),
                                         intval($total_pages)

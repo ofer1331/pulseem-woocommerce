@@ -78,10 +78,12 @@ class WooPulseemAbDbModel {
 
         if ($current_version !== false && (float)$current_version < (float)$pulseem_ab_db_version) {
             
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $this->table_name is from $wpdb->prefix (set in constructor)
             $customer_id_exists = $wpdb->get_results(
                 "SHOW COLUMNS FROM {$this->table_name} LIKE 'customer_id'"
             );
             if (empty($customer_id_exists)) {
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
                 $wpdb->query(
                     sprintf(
                         "ALTER TABLE %s ADD COLUMN customer_id varchar(255) DEFAULT '' NOT NULL",
@@ -90,10 +92,12 @@ class WooPulseemAbDbModel {
                 );
             }
 
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $this->table_name is from $wpdb->prefix
             $customer_data_exists = $wpdb->get_results(
                 "SHOW COLUMNS FROM {$this->table_name} LIKE 'customer_data'"
             );
             if (empty($customer_data_exists)) {
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
                 $wpdb->query(
                     sprintf(
                         "ALTER TABLE %s ADD COLUMN customer_data text DEFAULT '' NOT NULL",
@@ -102,10 +106,12 @@ class WooPulseemAbDbModel {
                 );
             }
 
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $this->table_name is from $wpdb->prefix
             $user_agree_exists = $wpdb->get_results(
                 "SHOW COLUMNS FROM {$this->table_name} LIKE 'user_agree'"
             );
             if (empty($user_agree_exists)) {
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
                 $wpdb->query(
                     sprintf(
                         "ALTER TABLE %s ADD COLUMN user_agree tinyint(1) DEFAULT '0' NOT NULL",

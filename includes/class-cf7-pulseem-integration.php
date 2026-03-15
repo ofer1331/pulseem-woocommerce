@@ -125,6 +125,9 @@ add_action( 'wpcf7_after_save', function ( $post ) {
     if ( ! current_user_can( 'wpcf7_edit_contact_form', $post->id() ) ) {
         return;
     }
+    if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'wpcf7-save-contact-form_' . $post->id() ) ) {
+        return;
+    }
     update_post_meta( $post->id(), '_pulseem_enabled', sanitize_text_field( wp_unslash( $_POST['pulseem_enabled'] ?? '' ) ) );
     update_post_meta( $post->id(), '_pulseem_group', sanitize_text_field( wp_unslash( $_POST['pulseem_group'] ?? '' ) ) );
     update_post_meta( $post->id(), '_pulseem_email_field', sanitize_text_field( wp_unslash( $_POST['pulseem_email_field'] ?? '' ) ) );

@@ -212,8 +212,8 @@ This plugin connects to the following external services:
 * **Purpose**: Customer synchronization, group management, abandoned cart recovery, purchase tracking, and product synchronization.
 * **Data sent**: Customer email addresses, names, phone numbers, order data, product data, and page view data.
 * **When data is sent**: On user registration, checkout, order completion, page views (if enabled), and product updates.
-* **Terms of Use**: [https://www.pulseem.co.il/terms](https://www.pulseem.co.il/terms)
-* **Privacy Policy**: [https://www.pulseem.co.il/privacy](https://www.pulseem.co.il/privacy)
+* **Terms of Use**: [https://site.pulseem.co.il/terms-of-engagement/](https://site.pulseem.co.il/terms-of-engagement/)
+* **Privacy Policy**: [https://site.pulseem.co.il/privacy-policy/](https://site.pulseem.co.il/privacy-policy/)
 
 = Pulseem SOAP API =
 
@@ -221,8 +221,8 @@ This plugin connects to the following external services:
 * **Purpose**: Account authentication and verification.
 * **Data sent**: API credentials (API key, username, password).
 * **When data is sent**: During plugin setup and API authentication.
-* **Terms of Use**: [https://www.pulseem.co.il/terms](https://www.pulseem.co.il/terms)
-* **Privacy Policy**: [https://www.pulseem.co.il/privacy](https://www.pulseem.co.il/privacy)
+* **Terms of Use**: [https://site.pulseem.co.il/terms-of-engagement/](https://site.pulseem.co.il/terms-of-engagement/)
+* **Privacy Policy**: [https://site.pulseem.co.il/privacy-policy/](https://site.pulseem.co.il/privacy-policy/)
 
 = Pulseem Tracking Script =
 
@@ -230,8 +230,8 @@ This plugin connects to the following external services:
 * **Purpose**: Frontend tracking and analytics for marketing automation.
 * **Data sent**: Page views, user behavior data, purchase events.
 * **When data is sent**: On every page load when the plugin is active.
-* **Terms of Use**: [https://www.pulseem.co.il/terms](https://www.pulseem.co.il/terms)
-* **Privacy Policy**: [https://www.pulseem.co.il/privacy](https://www.pulseem.co.il/privacy)
+* **Terms of Use**: [https://site.pulseem.co.il/terms-of-engagement/](https://site.pulseem.co.il/terms-of-engagement/)
+* **Privacy Policy**: [https://site.pulseem.co.il/privacy-policy/](https://site.pulseem.co.il/privacy-policy/)
 
 == Third-party libraries ==
 
@@ -261,4 +261,4 @@ This plugin connects your WooCommerce store to the Pulseem marketing platform. W
 * No data is shared with third parties beyond the Pulseem platform
 * You maintain full control over what data is synchronized
 
-Please review [Pulseem's privacy policy](https://www.pulseem.co.il/privacy) for information about how your data is handled on their platform.
+Please review [Pulseem's privacy policy](https://site.pulseem.co.il/privacy-policy/) for information about how your data is handled on their platform.

@@ -72,6 +72,7 @@ class WooCheckoutForm {
      */
     public function enqueue_agreement_styles() {
         if ( is_checkout() ) {
+            // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Virtual handle for wp_add_inline_style only, no external resource to version.
             wp_register_style( 'pulseem-checkout-agreement', false );
             wp_enqueue_style( 'pulseem-checkout-agreement' );
             wp_add_inline_style( 'pulseem-checkout-agreement',
@@ -118,7 +119,8 @@ class WooCheckoutForm {
      * @version 1.0.0
      */
     public function save_agreement_field($order_id) {
-        $registration_agreement = isset($_POST['pulseem_checkout_agreement']) ? 1 : 0;
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the checkout nonce before triggering woocommerce_checkout_update_order_meta.
+        $registration_agreement = ! empty( $_POST['pulseem_checkout_agreement'] ) ? 1 : 0;
 
         // Trigger custom action for additional handling
         do_action('pulseem-wp-checkout-form-save', $registration_agreement);

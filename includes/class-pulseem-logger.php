@@ -479,7 +479,7 @@ class PulseemLogger {
             $query = $wpdb->prepare($query, $prepare_values);
         }
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- custom table, query is prepared above
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom table, query is prepared above
         return $wpdb->get_results($query);
     }
 
@@ -556,7 +556,7 @@ class PulseemLogger {
             $query = $wpdb->prepare($query, $prepare_values);
         }
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom table, query is prepared above
         return (int) $wpdb->get_var($query);
     }
 
@@ -612,7 +612,7 @@ class PulseemLogger {
         // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- $table_name from $wpdb->prefix, $placeholders are %d generated
         $query = $wpdb->prepare("DELETE FROM `$table_name` WHERE id IN ($placeholders)", $ids);
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom table, query is prepared above
         return (int) $wpdb->query($query);
     }
 
@@ -628,7 +628,7 @@ class PulseemLogger {
 
         $date = gmdate('Y-m-d H:i:s', strtotime("-{$days} days"));
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix, timestamp is prepared
         return $wpdb->query(
             // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $table_name from $wpdb->prefix
             $wpdb->prepare("DELETE FROM `$table_name` WHERE timestamp < %s", $date)
@@ -644,7 +644,7 @@ class PulseemLogger {
         global $wpdb;
         $table_name = self::get_table_name();
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $table_name from $wpdb->prefix
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix
         return $wpdb->query("TRUNCATE TABLE `$table_name`") !== false;
     }
 
@@ -668,18 +668,18 @@ class PulseemLogger {
         ];
 
         // Total count
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix
         $stats['total'] = (int) $wpdb->get_var("SELECT COUNT(*) FROM `$table_name`");
 
         // Counts by level
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix
         $level_counts = $wpdb->get_results("SELECT level, COUNT(*) as count FROM `$table_name` GROUP BY level", ARRAY_A);
         foreach ($level_counts as $row) {
             $stats['by_level'][$row['level']] = (int) $row['count'];
         }
 
         // Counts by context
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix
         $context_counts = $wpdb->get_results("SELECT context, COUNT(*) as count FROM `$table_name` GROUP BY context", ARRAY_A);
         foreach ($context_counts as $row) {
             $stats['by_context'][$row['context']] = (int) $row['count'];
@@ -687,7 +687,7 @@ class PulseemLogger {
 
         // Last 24h
         $since_24h = gmdate('Y-m-d H:i:s', strtotime('-24 hours'));
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix, timestamp is prepared
         $stats['last_24h'] = (int) $wpdb->get_var($wpdb->prepare(
             // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             "SELECT COUNT(*) FROM `$table_name` WHERE timestamp >= %s",
@@ -695,7 +695,7 @@ class PulseemLogger {
         ));
 
         // Errors in last 24h
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix, timestamp is prepared
         $stats['errors_24h'] = (int) $wpdb->get_var($wpdb->prepare(
             // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             "SELECT COUNT(*) FROM `$table_name` WHERE timestamp >= %s AND level = 'error'",
@@ -703,7 +703,7 @@ class PulseemLogger {
         ));
 
         // Warnings in last 24h
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix, timestamp is prepared
         $stats['warnings_24h'] = (int) $wpdb->get_var($wpdb->prepare(
             // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             "SELECT COUNT(*) FROM `$table_name` WHERE timestamp >= %s AND level = 'warning'",
@@ -711,7 +711,7 @@ class PulseemLogger {
         ));
 
         // Table size in bytes — force InnoDB to update statistics for accurate size
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table_name from $wpdb->prefix
         $wpdb->query("ANALYZE TABLE `$table_name`");
         $db_name = $wpdb->dbname;
         $size_result = $wpdb->get_row($wpdb->prepare(

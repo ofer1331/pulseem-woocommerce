@@ -20,13 +20,20 @@ delete_option( 'pulseem_ab_db_version' );
 delete_option( 'pulseem_ab_db_db_version' );
 
 // Remove custom tables
-$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}pulseem_abandoned" );
-$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}pulseem_logs" );
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Dropping plugin tables on uninstall is expected.
+$wpdb->query( "DROP TABLE IF EXISTS `" . esc_sql( $wpdb->prefix . 'pulseem_abandoned' ) . "`" );
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Dropping plugin tables on uninstall is expected.
+$wpdb->query( "DROP TABLE IF EXISTS `" . esc_sql( $wpdb->prefix . 'pulseem_logs' ) . "`" );
 
 // Clear cron events
 wp_clear_scheduled_hook( 'pulseem_abandoned_cron_hook' );
 
 // Clean up transients
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Bulk transient cleanup on uninstall requires direct query.
 $wpdb->query(
-    "DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_pulseem\_%' OR option_name LIKE '_transient_timeout_pulseem\_%'"
+    $wpdb->prepare(
+        "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
+        $wpdb->esc_like( '_transient_pulseem_' ) . '%',
+        $wpdb->esc_like( '_transient_timeout_pulseem_' ) . '%'
+    )
 );

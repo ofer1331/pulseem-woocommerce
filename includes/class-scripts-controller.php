@@ -44,6 +44,7 @@ class ScriptsController {
 	 */
 	public function initAdminScripts($hook) {
 		// Only load on Pulseem settings page
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading $_GET['page'] for conditional script loading, no data processing.
 		if (isset($_GET['page']) && sanitize_text_field(wp_unslash($_GET['page'])) === 'pulseem_settings') {
 			// Add nonce for admin AJAX calls
 			wp_localize_script('pulseem-select2-js', 'pulseem_ajax', [

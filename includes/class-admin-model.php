@@ -120,16 +120,7 @@ class WooPulseemAdminModel {
 	}
 
 	public function getEnvironmentUrl() {
-		/*
-		if($this->environment_mode == 0){	
-			$url = 'https://ui-api.pulseemdev.co.il';
-		}
-		else{
-			$url = 'https://ui-api.pulseem.com';
-		}
-		*/
-		$url = 'https://ui-api.pulseem.com';
-		return $url;
+		return 'https://ui-api.pulseem.com';
 	}
 
 	/**

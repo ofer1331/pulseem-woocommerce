@@ -109,19 +109,6 @@ class WooPulseemAdminController {
 		// Ensure the logs table exists
 		\pulseem\PulseemLogger::create_table();
 
-		wp_enqueue_script(
-			'pulseem-logs-js',
-			PULSEEM_ASSETS_URI . 'js/pulseem-logs.js',
-			array(),
-			'1.4.2',
-			true
-		);
-
-		wp_localize_script('pulseem-logs-js', 'pulseem_logs', [
-			'ajax_url' => admin_url('admin-ajax.php'),
-			'nonce'    => wp_create_nonce('pulseem_logs_nonce'),
-		]);
-
 		wp_enqueue_style(
 			'pulseem-logs-css',
 			PULSEEM_ASSETS_URI . 'style/pulseem-logs.css',
@@ -140,6 +127,7 @@ class WooPulseemAdminController {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'pulseem' ) );
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading $_GET['settings-updated'] for admin notice display, no data processing.
 		$settings_updated = isset( $_GET['settings-updated'] ) ? sanitize_text_field( wp_unslash( $_GET['settings-updated'] ) ) : false;
 	
 		$pulseem_admin_model = new WooPulseemAdminModel();
@@ -327,6 +315,7 @@ class WooPulseemAdminController {
 	 * @return array
 	 */
 	private function get_export_filter_args() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Reading $_GET filter params for log export; nonce is verified in the calling export handler.
 		return [
 			'level'     => isset( $_GET['level'] ) ? sanitize_text_field( wp_unslash( $_GET['level'] ) ) : '',
 			'context'   => isset( $_GET['context'] ) ? sanitize_text_field( wp_unslash( $_GET['context'] ) ) : '',
@@ -335,6 +324,7 @@ class WooPulseemAdminController {
 			'date_from' => isset( $_GET['date_from'] ) ? sanitize_text_field( wp_unslash( $_GET['date_from'] ) ) : '',
 			'date_to'   => isset( $_GET['date_to'] ) ? sanitize_text_field( wp_unslash( $_GET['date_to'] ) ) : '',
 		];
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
