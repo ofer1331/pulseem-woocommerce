@@ -127,7 +127,7 @@ class WooPulseemAdminController {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'pulseem' ) );
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading $_GET['settings-updated'] for admin notice display, no data processing.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only: checking WordPress-set query param for success notice display. No form processing or state change.
 		$settings_updated = isset( $_GET['settings-updated'] ) ? sanitize_text_field( wp_unslash( $_GET['settings-updated'] ) ) : false;
 	
 		$pulseem_admin_model = new WooPulseemAdminModel();
@@ -315,7 +315,7 @@ class WooPulseemAdminController {
 	 * @return array
 	 */
 	private function get_export_filter_args() {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Reading $_GET filter params for log export; nonce is verified in the calling export handler.
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only: extracting sanitized filter params for log export query. Nonce verified in the calling export handler.
 		return [
 			'level'     => isset( $_GET['level'] ) ? sanitize_text_field( wp_unslash( $_GET['level'] ) ) : '',
 			'context'   => isset( $_GET['context'] ) ? sanitize_text_field( wp_unslash( $_GET['context'] ) ) : '',

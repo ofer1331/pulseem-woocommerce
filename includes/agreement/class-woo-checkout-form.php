@@ -119,7 +119,7 @@ class WooCheckoutForm {
      * @version 1.0.0
      */
     public function save_agreement_field($order_id) {
-        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the checkout nonce before triggering woocommerce_checkout_update_order_meta.
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs inside 'woocommerce_checkout_update_order_meta'; nonce verified by WC_Checkout::process_checkout() upstream.
         $registration_agreement = ! empty( $_POST['pulseem_checkout_agreement'] ) ? 1 : 0;
 
         // Trigger custom action for additional handling

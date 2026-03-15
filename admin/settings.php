@@ -51,7 +51,7 @@ $options = get_option('pulseem_settings', []);
 
             <?php
             // Notification Messages
-            // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Reading $_GET['settings-updated'] for success notice display, no data processing.
+            // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only: checking WordPress-set query param for success notice display. No form processing or state change.
             if (
                 isset($_GET['settings-updated']) &&
                 filter_var(sanitize_text_field(wp_unslash($_GET['settings-updated'])), FILTER_VALIDATE_BOOLEAN)

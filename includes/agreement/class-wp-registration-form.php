@@ -37,7 +37,7 @@ class WpRegistrationForm {
 
 
 	public function add_agreement_field(){
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WordPress verifies the nonce before rendering the registration form.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- This callback runs during wp_login_form() which handles its own nonce. No state change here, only reading checkbox value for display.
 		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 	?>
 		<p>
@@ -59,7 +59,7 @@ class WpRegistrationForm {
 
 
 	public function save_agreement_field($user_id){
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WordPress verifies the nonce before triggering the user_register hook.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs inside the 'user_register' hook; nonce verified by wp-login.php registration handler upstream.
 		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 		do_action('pulseem-wp-registration-form-save', $registration_agreement);
 		UserModel::update_user_pulseem_registration_agreement($user_id, $registration_agreement);

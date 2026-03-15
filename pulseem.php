@@ -204,7 +204,7 @@ function pulseem_head_script() {
  */
 add_action('admin_enqueue_scripts', 'pulseem_enqueue_admin_assets');
 function pulseem_enqueue_admin_assets($hook) {
-    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading $_GET['page'] for conditional admin asset loading, no data processing.
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only: checking admin page slug for conditional asset loading. No form processing or state change.
     $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
     if ($current_page === 'pulseem_settings' || $current_page === 'pulseem_logs') {
        // Enqueue Tailwind CSS (local)

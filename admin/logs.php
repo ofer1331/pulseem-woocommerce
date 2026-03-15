@@ -91,7 +91,7 @@ function pulseem_sort_link($column, $current_orderby, $current_order) {
     $new_order = ($current_orderby === $column && $current_order === 'ASC') ? 'DESC' : 'ASC';
     $allowed_keys = ['page', 'level', 'context', 'email', 'search', 'date_from', 'date_to', 'request_id', 'paged', 'per_page', 'order', 'orderby'];
     $params = [];
-    // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Reading $_GET params to build sort/filter URLs for the logs table, no data processing.
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only: building sort/filter URLs from sanitized $_GET params. No form processing or state change.
     foreach ($allowed_keys as $key) {
         if (isset($_GET[$key])) {
             $params[$key] = sanitize_text_field(wp_unslash($_GET[$key]));

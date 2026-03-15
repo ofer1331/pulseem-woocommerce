@@ -46,7 +46,7 @@ class WooRegistrationForm {
 			return; // לא להציג את השדה אם לא פעיל
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the nonce before rendering this registration form.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs inside 'woocommerce_register_form'; nonce verified by WooCommerce form handler upstream. Reading checkbox for display only.
 		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 		?>
 		<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
@@ -69,7 +69,7 @@ class WooRegistrationForm {
 	}
 
 	public function save_agreement_field($user_id){
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies the nonce before triggering woocommerce_created_customer.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs inside 'woocommerce_created_customer'; nonce verified by WC_Form_Handler::process_registration() upstream.
 		$registration_agreement = ! empty( $_POST['pulseem_user_registration_agreement'] ) ? 1 : 0;
 		do_action('pulseem-wp-registration-form-save', $registration_agreement);
 		UserModel::update_user_pulseem_registration_agreement($user_id, $registration_agreement);
