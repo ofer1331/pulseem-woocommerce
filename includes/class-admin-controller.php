@@ -60,6 +60,29 @@ class WooPulseemAdminController {
 			}
 		}
 
+		// Preserve the product-sync feed token — it is managed via a dedicated AJAX
+		// action, not a form field, so it would otherwise be dropped on save.
+		$existing = get_option( 'pulseem_settings', [] );
+		if ( ! empty( $existing['product_sync_token'] ) && empty( $sanitized['product_sync_token'] ) ) {
+			$sanitized['product_sync_token'] = sanitize_text_field( $existing['product_sync_token'] );
+		}
+
+		// Normalize product-sync advanced settings when the product-sync tab was submitted.
+		// product_sync_chunk_size is always rendered as a hidden/number input on that tab,
+		// so its presence signals the tab participated in the submission.
+		if ( isset( $input['product_sync_chunk_size'] ) ) {
+			$sanitized['product_sync_chunking_enabled'] = ! empty( $input['product_sync_chunking_enabled'] ) ? '1' : '0';
+			$sanitized['product_sync_xml_enabled']      = ! empty( $input['product_sync_xml_enabled'] ) ? '1' : '0';
+
+			$chunk_size = absint( $input['product_sync_chunk_size'] );
+			if ( $chunk_size < 100 ) {
+				$chunk_size = 10000;
+			} elseif ( $chunk_size > 100000 ) {
+				$chunk_size = 100000;
+			}
+			$sanitized['product_sync_chunk_size'] = (string) $chunk_size;
+		}
+
 		\pulseem\PulseemLogger::info(
 			\pulseem\PulseemLogger::CONTEXT_SETTINGS,
 			'Settings updated',

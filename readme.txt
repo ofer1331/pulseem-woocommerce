@@ -4,7 +4,7 @@ Tags: woocommerce, email marketing, marketing automation, abandoned cart, checko
 Requires at least: 6.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,18 @@ The plugin is designed to work alongside other WordPress and WooCommerce plugins
 4. Real-time synchronization status and logs
 
 == Changelog ==
+
+= 1.4.3 =
+* New: Chunked product feed — split the JSON export into configurable file-sized chunks (default 10,000 products per chunk) via `?chunk=N&chunk_size=M` on the `/wp-json/pulseem/v1/get-products-json` endpoint
+* New: XML feed format — same field shape as JSON, available via `?format=xml`
+* New: "Download all as ZIP" endpoint `/wp-json/pulseem/v1/get-products-zip` that packages every chunk into a single archive
+* New: Advanced Settings section on the Product Sync tab with auto-expanded warning banner when the catalog exceeds 20,000 products (variations counted)
+* New: Access token for the feed endpoint (`?token=...`), regeneratable from the admin UI, so external services like Pulseem can fetch the feed without a logged-in user
+* New: Per-link "Open in browser / Download file" mode with `Content-Disposition: attachment` and meaningful filenames
+* Improvement: Feed payload now includes description, permalink (`hrefUrl`), categories, main image URL (`imagesURL`) and effective price — matching the push-sync shape
+* Improvement: Memory-safe streaming for large catalogs — IDs-only pre-query, per-row cache eviction, per-request memoization of parent-level lookups (terms/permalink) to handle catalogs with 150K+ variations
+* Improvement: Safety guard — full-feed requests above 20,000 products return HTTP 413 instead of exhausting memory
+* Improvement: Cached product count with transient + invalidation on product save/delete/trash
 
 = 1.4.2 =
 * Fix: Removed duplicate API data from caller logs (user_register, purchase, abandoned_cart, elementor, cf7)

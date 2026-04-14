@@ -14,7 +14,7 @@
  *
  * Plugin Name: Pulseem
  * Description: WooCommerce integration with Pulseem API.
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: Pulseem
  * Author URI: https://site.pulseem.co.il/
  * License: GPLv2 or later
@@ -27,7 +27,7 @@
  * Requires Plugins: woocommerce
  *
  * @since      1.0.0
- * @version    1.4.2
+ * @version    1.4.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -89,7 +89,7 @@ function pulseem_register_activation_hook() {
     \pulseem\PulseemLogger::info(
         \pulseem\PulseemLogger::CONTEXT_ACTIVATION,
         'Plugin activated',
-        ['version' => '1.4.2']
+        ['version' => '1.4.3']
     );
 
     add_option('pulseem_needs_api_setup', true);
@@ -223,7 +223,7 @@ function pulseem_enqueue_admin_assets($hook) {
                 'pulseem-logs-js',
                 PULSEEM_ASSETS_URI . 'js/pulseem-logs.js',
                 [],
-                '1.4.2',
+                '1.4.3',
                 false
             );
             wp_localize_script('pulseem-logs-js', 'pulseem_logs', [
@@ -353,7 +353,7 @@ function pulseem_get_order_data($order_id) {
         'pulseem-purchase-tracking',
         PULSEEM_PUBLIC_URI . 'pulseem-purchase-tracking.js',
         array(),
-        '1.4.2',
+        '1.4.3',
         true
     );
 
